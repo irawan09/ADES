@@ -25,7 +25,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(LoginActivity.this, VideoActivity.class);
+                Intent intent=new Intent(LoginActivity.this, KonsumenActivity.class);
                 startActivity(intent);
             }
         });

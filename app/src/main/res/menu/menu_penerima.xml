@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.elektroshock.ades.ades.Activity.MainActivity">
+    <item
+        android:id="@+id/simpan"
+        android:orderInCategory="100"
+        android:title="Simpan Data"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/hapus"
+        android:orderInCategory="100"
+        android:title="Hapus Data"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/ambil"
+        android:orderInCategory="100"
+        android:title="Ambil Data"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/kirim"
+        android:orderInCategory="100"
+        android:title="Kirim Data"
+        app:showAsAction="never" />
+</menu>

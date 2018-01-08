@@ -23,7 +23,13 @@
         <activity
             android:name=".Activity.VideoActivity"
             android:label="@string/title_activity_video"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activity.KonsumenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activity.PenerimaActivity"></activity>
     </application>
 
 </manifest>
