@@ -74,12 +74,9 @@ public class SignatureActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Function call for Digital Signature
                 dialog_action();
-
             }
         });
-
         Log.e("tag", "ANGKA oncreate:"+number);
-
     }
     // Function for Digital Signature
     public void dialog_action() {

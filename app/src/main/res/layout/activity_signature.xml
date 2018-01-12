@@ -34,8 +34,8 @@
 
         <ImageView
             android:id="@+id/driver_foto"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:padding="8dp"
             android:layout_marginBottom="8dp"

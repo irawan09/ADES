@@ -60,11 +60,8 @@ public class VideoActivity extends AppCompatActivity {
         // Set the media controller buttons
         if (mediaController == null) {
             mediaController = new MediaController(VideoActivity.this);
-
             // Set the videoView that acts as the anchor for the MediaController.
             mediaController.setAnchorView(videoView);
-
-
             // Set MediaController for VideoView
             videoView.setMediaController(mediaController);
         }
@@ -86,19 +83,16 @@ public class VideoActivity extends AppCompatActivity {
 
             public void onPrepared(MediaPlayer mediaPlayer) {
 
-
                 videoView.seekTo(position);
                 if (position == 0) {
                     videoView.start();
                 }
-
                 // When video Screen change size.
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
                     public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
-
-                        // Re-Set the videoView that acts as the anchor for the MediaController
-                        mediaController.setAnchorView(videoView);
+                // Re-Set the videoView that acts as the anchor for the MediaController
+                mediaController.setAnchorView(videoView);
                     }
                 });
             }
