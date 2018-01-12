@@ -34,8 +34,8 @@
 
         <ImageView
             android:id="@+id/driver_foto"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:padding="8dp"
             android:layout_marginBottom="8dp"
@@ -165,7 +165,7 @@
             android:layout_marginTop="8dp"
             android:text="Tanda tangan"
             android:padding="5dp"
-            android:background="@drawable/bg_button"            />
+            android:background="@drawable/bg_button"/>
 
 
     </LinearLayout>
