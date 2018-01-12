@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.elektroshock.ades.ades">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,7 +31,8 @@
             android:name=".Activity.KonsumenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.PenerimaActivity"></activity>
+        <activity android:name=".Activity.PenerimaActivity" />
+        <activity android:name=".Activity.SignatureActivity"></activity>
     </application>
 
 </manifest>
