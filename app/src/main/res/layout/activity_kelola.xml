@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFF"
-    tools:context="com.elektroshock.ades.ades.Activity.SignatureActivity">
+    tools:context="com.elektroshock.ades.ades.Activity.KelolaActivity">
 
     <include
         layout="@layout/toolbar"
@@ -14,6 +13,7 @@
         android:layout_height="wrap_content"/>
 
     <LinearLayout
+        android:id="@+id/penerima"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -28,20 +28,46 @@
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Pernyataan Konsumen"
-            android:textSize="20sp"
-            android:textColor="#000000"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Menyatakan bahwa bapak/ibu :"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
+            android:text="Data Penerima"
+            android:textColor="#000000"
+            android:textSize="20sp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="Nama"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="No. Handphone"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Status Kekeluargaan"
+                    android:textColor="#000000"/>
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,23 +76,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="1."
+                    android:layout_marginTop="8dp"
+                    android:text=":"
                     android:textColor="#000000"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="2."
+                    android:layout_marginTop="8dp"
+                    android:text=":"
                     android:textColor="#000000"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="3."
+                    android:layout_marginTop="8dp"
+                    android:text=":"
                     android:textColor="#000000"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -75,83 +102,85 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/penerima_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Sudah menerima unit dengan lengkap dan baik"
-                    android:textColor="#000000"/>
+                    android:layout_marginTop="8dp"/>
 
                 <TextView
+                    android:id="@+id/penerima_kontak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Mengetahui fitur dan fungsi pengoperasian kendaraan yang di terima"
-                    android:textColor="#000000"/>
+                    android:layout_marginTop="8dp"/>
 
                 <TextView
+                    android:id="@+id/penerima_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mengetahui ketentuan garansi, service dan lokasi SVC"
-                    android:textColor="#000000"/>
+                    android:layout_marginTop="8dp"/>
 
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Tanda Tangan Penerima"
             android:textColor="#000000"/>
 
-        <Button
-            android:id="@+id/signature"
+        <ImageView
+            android:id="@+id/penerima_ttd"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/atasnama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Tanda tangan"
-            android:textColor="#FFFFFF"
-            android:padding="5dp"
-            android:background="@drawable/bg_button"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Penilaian Aplikasi"
-            android:textColor="#000000"
-            android:layout_marginBottom="8dp"/>
-
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="1"
-            android:theme="@style/RatingBar" />
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center">
 
         <Button
-            android:id="@+id/kirim_data"
+            android:id="@+id/simpan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:text="Simpan"
+            android:textColor="#ffffff"
+            android:padding="5dp"
+            android:background="@drawable/bg_button"/>
+
+        <Button
+            android:id="@+id/hapus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hapus"
+            android:textColor="#ffffff"
+            android:padding="5dp"
+            android:background="@drawable/bg_button"/>
+
+        <Button
+            android:id="@+id/kirim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:text="Kirim"
-            android:textColor="#FFFFFF"
+            android:textColor="#ffffff"
             android:padding="5dp"
             android:background="@drawable/bg_button"/>
 

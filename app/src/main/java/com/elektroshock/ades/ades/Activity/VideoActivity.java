@@ -41,7 +41,7 @@ public class VideoActivity extends AppCompatActivity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(VideoActivity.this, SignatureActivity.class);
+                Intent intent=new Intent(VideoActivity.this, DriverActivity.class);
                 startActivity(intent);
             }
         });

@@ -9,5 +9,6 @@
     <string name="hint_cancel">Batal</string>
     <string name="hint_clear">Bersihkan</string>
     <string name="hint_save">Simpan</string>
+    <string name="title_activity_driver">DriverActivity</string>
 
 </resources>

@@ -2,6 +2,8 @@ package com.elektroshock.ades.ades.Activity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,7 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +30,7 @@ import android.widget.Toast;
 
 import com.elektroshock.ades.ades.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -43,7 +50,7 @@ public class SignatureActivity extends AppCompatActivity {
     // Creating Separate Directory for saving Generated Images
     String DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/TandaTangan/";
     String pic_name;
-    String StoredPath = DIRECTORY + pic_name + ".png";
+    String StoredPath = DIRECTORY + pic_name + ".JPEG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,7 @@ public class SignatureActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // get the reference of Toolbar
         toolbar.setTitle("Tanda Tangan Pelanggan");
         toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
 
         // Button to open signature panel
         btn_get_sign = (Button) findViewById(R.id.signature);
@@ -78,6 +86,29 @@ public class SignatureActivity extends AppCompatActivity {
         });
         Log.e("tag", "ANGKA oncreate:"+number);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_penerima, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.kelola){
+            Intent intent=new Intent(SignatureActivity.this, KelolaActivity.class);
+            startActivity(intent);
+
+        }  else if (item.getItemId() == R.id.ambil) {
+            Intent intent=new Intent(SignatureActivity.this, LihatDataActivity.class);
+            startActivity(intent);
+        }
+
+        return true;
+    }
+
     // Function for Digital Signature
     public void dialog_action() {
 
@@ -104,12 +135,14 @@ public class SignatureActivity extends AppCompatActivity {
             public void onClick(View v) {
                 number++;
                 pic_name = "TTD" + number;
-                StoredPath = DIRECTORY + pic_name + ".JPG";
+                StoredPath = DIRECTORY + pic_name + ".JPEG";
                 Log.e("tag", "ANGKA onclick:"+number);
 
                 Log.e("tag", "Directory" + StoredPath);
                 view.setDrawingCacheEnabled(true);
                 mSignature.save(view, StoredPath);
+
+
                 dialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Berhasil Disimpan", Toast.LENGTH_SHORT).show();
                 // Calling the same class
@@ -159,13 +192,26 @@ public class SignatureActivity extends AppCompatActivity {
                      // Output the file
                      FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
                      v.draw(canvas);
-                     // Convert the output file to Image such as .png
-                     bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
+                     // Convert the output file to Image such as .jpeg
+                     bitmap.compress(Bitmap.CompressFormat.JPEG, 90, mFileOutStream);
                      mFileOutStream.flush();
                      mFileOutStream.close();
                 } catch (Exception e) {
                     Log.v("log_tag", e.toString());
                 }
+
+            // Convert the output file to Image such as .jpeg
+            ByteArrayOutputStream stream=new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
+            byte[] image=stream.toByteArray();
+            String img_str = Base64.encodeToString(image, 0);
+            //save image in shared preferences
+            SharedPreferences preferences = getSharedPreferences("Penerima",MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("ttd",img_str);
+            editor.commit();
+            Log.e("gambar", "String Image :"+preferences);
+
         }
 
         public void clear() {

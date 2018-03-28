@@ -14,7 +14,7 @@ import com.elektroshock.ades.ades.R;
 public class KonsumenActivity extends Activity {
 
     Button cust,not_cust;
-    TextView nama, mesin, type, ttl, hape;
+    TextView nama, ttl, hape, alamat, type, warna, mesin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +22,12 @@ public class KonsumenActivity extends Activity {
         setContentView(R.layout.activity_konsumen);
 
         nama = (TextView) findViewById(R.id.nama);
-        mesin = (TextView) findViewById(R.id.no_mesin);
-        type = (TextView) findViewById(R.id.type);
         ttl = (TextView) findViewById(R.id.ttl);
         hape = (TextView) findViewById(R.id.hape);
+        alamat = (TextView) findViewById(R.id.alamat);
+        type = (TextView) findViewById(R.id.type);
+        warna = (TextView) findViewById(R.id.warna);
+        mesin = (TextView) findViewById(R.id.mesin);
 
         cust = (Button) findViewById(R.id.cust);
         not_cust = (Button) findViewById(R.id.no_cust);
