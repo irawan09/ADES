@@ -40,7 +40,8 @@
         <activity
             android:name=".Activity.DriverActivity"
             android:label="@string/title_activity_driver"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activity.DataPelangganActivity"></activity>
     </application>
 
 </manifest>

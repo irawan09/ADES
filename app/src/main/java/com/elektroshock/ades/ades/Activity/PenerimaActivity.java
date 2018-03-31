@@ -29,9 +29,9 @@ import java.util.List;
 public class PenerimaActivity extends AppCompatActivity {
 
     Button next;
-    TextView nama, hp;
-    String status, nama_penerima, kontak;
-    protected EditText penerima_nama, penerima_kontak;
+    TextView nama, ktp, hp;
+    String status, nama_penerima, no_ktp, kontak;
+    protected EditText penerima_nama,penerima_ktp, penerima_kontak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +43,13 @@ public class PenerimaActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
 
         nama = (TextView) findViewById(R.id.nama_penerima);
+        ktp = (TextView) findViewById(R.id.no_ktp);
         hp = (TextView) findViewById(R.id.no_hp);
 
         next = (Button) findViewById(R.id.next);
 
         penerima_nama = (EditText) findViewById(R.id.nama_penerima);
+        penerima_ktp = (EditText) findViewById(R.id.no_ktp);
         penerima_kontak = (EditText) findViewById(R.id.no_hp);
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -55,11 +57,13 @@ public class PenerimaActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 nama_penerima = penerima_nama.getText().toString();
+                no_ktp = penerima_ktp.getText().toString();
                 kontak = penerima_kontak.getText().toString();
 
                 SharedPreferences preferences = getSharedPreferences("Penerima",MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("penerima_nama",nama_penerima);
+                editor.putString("penerima_ktp",no_ktp);
                 editor.putString("penerima_kontak",kontak);
                 editor.putString("penerima_status",status);
                 editor.commit();
@@ -73,6 +77,7 @@ public class PenerimaActivity extends AppCompatActivity {
 
         final String[] status = new String[]{
                 "Status Kekeluargaan",
+                "Yang bersangkutan",
                 "Ayah",
                 "Ibu",
                 "Anak",

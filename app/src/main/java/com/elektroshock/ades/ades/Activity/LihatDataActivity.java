@@ -18,5 +18,7 @@ public class LihatDataActivity extends AppCompatActivity {
         toolbar.setTitle("Lihat Data Penerima");
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+
+
     }
 }

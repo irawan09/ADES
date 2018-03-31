@@ -4,16 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.elektroshock.ades.ades.R;
 
-public class KonsumenActivity extends Activity {
+public class KonsumenActivity extends AppCompatActivity {
 
-    Button cust,not_cust;
+    Button cust,penerima;
     TextView nama, ttl, hape, alamat, type, warna, mesin;
 
     @Override
@@ -29,24 +33,15 @@ public class KonsumenActivity extends Activity {
         warna = (TextView) findViewById(R.id.warna);
         mesin = (TextView) findViewById(R.id.mesin);
 
-        cust = (Button) findViewById(R.id.cust);
-        not_cust = (Button) findViewById(R.id.no_cust);
+        penerima = (Button) findViewById(R.id.penerima_kendaraan);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // get the reference of Toolbar
         toolbar.setTitle("Data Pelanggan");
         toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
 
 
-        cust.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(KonsumenActivity.this, VideoActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        not_cust.setOnClickListener(new View.OnClickListener() {
+        penerima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -56,4 +51,24 @@ public class KonsumenActivity extends Activity {
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_pelanggan, menu);
+        //getMenuInflater().inflate(R.menu.menu_pelanggan, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.kelola_pelanggan){
+            Intent intent=new Intent(KonsumenActivity.this, DataPelangganActivity.class);
+            startActivity(intent);
+
+        }
+        return true;
+    }
+
+
 }

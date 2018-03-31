@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.elektroshock.ades.ades.Activity.LihatDataActivity">
+    tools:context=".Activity.DataPelangganActivity">
 
     <include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar1"/>
+
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/database"
+        android:id="@+id/pelanggan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp"
         android:clipToPadding="false">
 
     </android.support.v7.widget.RecyclerView>
+
+
+
 </LinearLayout>

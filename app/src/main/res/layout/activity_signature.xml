@@ -145,6 +145,28 @@
             android:stepSize="1"
             android:theme="@style/RatingBar" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:layout_marginTop="16dp"
+            android:text="Komentar Penilaian Aplikasi"
+            android:textColor="#000000"/>
+
+        <EditText
+            android:id="@+id/komentar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:singleLine="true"
+            android:inputType="number"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"
+            android:hint=""
+            android:background="@drawable/bg_edittext_menu"/>
+
         <Button
             android:id="@+id/kirim_data"
             android:layout_width="wrap_content"

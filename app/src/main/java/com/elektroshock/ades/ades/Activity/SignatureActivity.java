@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ import java.io.FileOutputStream;
 
 public class SignatureActivity extends AppCompatActivity {
 
-    Button btn_get_sign, mClear, mGetSign, mCancel;
+    Button btn_get_sign, mClear, mGetSign, mCancel, kirim;
 
     File file;
     Dialog dialog;
@@ -44,8 +45,11 @@ public class SignatureActivity extends AppCompatActivity {
     View view;
     signature mSignature;
     Bitmap bitmap;
+    String comment;
     static int number; //static will get memory only once and retain its value
     // (makes the counter not set again to default value)
+
+    protected EditText komentar;
 
     // Creating Separate Directory for saving Generated Images
     String DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/TandaTangan/";
@@ -64,6 +68,9 @@ public class SignatureActivity extends AppCompatActivity {
 
         // Button to open signature panel
         btn_get_sign = (Button) findViewById(R.id.signature);
+
+        komentar = (EditText) findViewById(R.id.komentar);
+        kirim = (Button) findViewById(R.id.kirim_data) ;
 
         // Method to create Directory, if the Directory doesn't exists
         file = new File(DIRECTORY);
@@ -85,28 +92,13 @@ public class SignatureActivity extends AppCompatActivity {
             }
         });
         Log.e("tag", "ANGKA oncreate:"+number);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_penerima, menu);
-        //getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==R.id.kelola){
-            Intent intent=new Intent(SignatureActivity.this, KelolaActivity.class);
-            startActivity(intent);
-
-        }  else if (item.getItemId() == R.id.ambil) {
-            Intent intent=new Intent(SignatureActivity.this, LihatDataActivity.class);
-            startActivity(intent);
-        }
-
-        return true;
+        kirim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comment = komentar.getText().toString();
+            }
+        });
     }
 
     // Function for Digital Signature
@@ -159,6 +151,28 @@ public class SignatureActivity extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_penerima, menu);
+        //getMenuInflater().inflate(R.menu.menu_pelanggan, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.kelola){
+            Intent intent=new Intent(SignatureActivity.this, KelolaActivity.class);
+            startActivity(intent);
+
+        }  else if (item.getItemId() == R.id.ambil) {
+            Intent intent=new Intent(SignatureActivity.this, LihatDataActivity.class);
+            startActivity(intent);
+        }
+
+        return true;
     }
 
     public class signature extends View {

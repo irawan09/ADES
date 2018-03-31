@@ -211,23 +211,15 @@
         android:layout_below="@+id/toolbar2">
 
         <Button
-            android:id="@+id/cust"
+            android:id="@+id/penerima_kendaraan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_button"
-            android:layout_marginRight="16dp"
-            android:padding="8dp"
-            android:text="Konsumen"
-            android:textColor="#FFFF" />
-
-        <Button
-            android:id="@+id/no_cust"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
+            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
             android:padding="8dp"
-            android:text="Bukan Konsumen"
+            android:text="Lanjut"
             android:textColor="#FFFF"/>
     </LinearLayout>
 
