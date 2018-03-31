@@ -155,7 +155,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Jl. Merdeka Taya no.86 BTN Pepabri"
+                    android:text="Jl. Merdeka Raya no.86 BTN Pepabri"
                     android:textColor="#000000"
                     android:textSize="11sp"/>
 
