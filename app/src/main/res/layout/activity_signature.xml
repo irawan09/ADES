@@ -161,7 +161,6 @@
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:singleLine="true"
-            android:inputType="number"
             android:fontFamily="sans-serif"
             android:textSize="18sp"
             android:hint=""

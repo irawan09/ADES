@@ -27,6 +27,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.elektroshock.ades.ades.R;
@@ -45,10 +46,11 @@ public class SignatureActivity extends AppCompatActivity {
     View view;
     signature mSignature;
     Bitmap bitmap;
-    String comment;
+    String comment, nilai;
     static int number; //static will get memory only once and retain its value
     // (makes the counter not set again to default value)
 
+    private RatingBar ratingBar;
     protected EditText komentar;
 
     // Creating Separate Directory for saving Generated Images
@@ -93,12 +95,67 @@ public class SignatureActivity extends AppCompatActivity {
         });
         Log.e("tag", "ANGKA oncreate:"+number);
 
+        addListenerOnRatingBar();
+
         kirim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 comment = komentar.getText().toString();
+                String rating = nilai;
+
+                Log.e("tag", "Rating " + nilai);
+                Log.e("tag", "Komentar " + comment);
+
+                SharedPreferences preferences = getSharedPreferences("Penerima",MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("rating",rating);
+                editor.putString("komentar",comment);
+                editor.commit();
+
+                Toast.makeText(getBaseContext(),"Data tersimpan", Toast.LENGTH_SHORT).show();
+
+
             }
         });
+    }
+
+    private void addListenerOnRatingBar() {
+        // TODO Auto-generated method stub
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
+
+        //if rating value is changed,
+        //display the current rating value in the result (textview) automatically
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+                nilai = String.valueOf(rating);
+                Log.e("tag", "Rating mentah " + nilai);
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_penerima, menu);
+        //getMenuInflater().inflate(R.menu.menu_pelanggan, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.kelola){
+            Intent intent=new Intent(SignatureActivity.this, KelolaActivity.class);
+            startActivity(intent);
+
+        }  else if (item.getItemId() == R.id.ambil) {
+            Intent intent=new Intent(SignatureActivity.this, LihatDataActivity.class);
+            startActivity(intent);
+        }
+
+        return true;
     }
 
     // Function for Digital Signature
@@ -153,28 +210,6 @@ public class SignatureActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_penerima, menu);
-        //getMenuInflater().inflate(R.menu.menu_pelanggan, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==R.id.kelola){
-            Intent intent=new Intent(SignatureActivity.this, KelolaActivity.class);
-            startActivity(intent);
-
-        }  else if (item.getItemId() == R.id.ambil) {
-            Intent intent=new Intent(SignatureActivity.this, LihatDataActivity.class);
-            startActivity(intent);
-        }
-
-        return true;
-    }
-
     public class signature extends View {
         private static final float STROKE_WIDTH = 5f;
         private static final float HALF_STROKE_WIDTH = STROKE_WIDTH / 2;
@@ -219,12 +254,14 @@ public class SignatureActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
             byte[] image=stream.toByteArray();
             String img_str = Base64.encodeToString(image, 0);
-            //save image in shared preferences
-            SharedPreferences preferences = getSharedPreferences("Penerima",MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("ttd",img_str);
-            editor.commit();
-            Log.e("gambar", "String Image :"+preferences);
+
+            Log.e("tag", "String Gambar mentah " + img_str);
+
+            SharedPreferences pref = getSharedPreferences("Signature",MODE_PRIVATE);
+            SharedPreferences.Editor ubah = pref.edit();
+            ubah.putString("ttd",img_str);
+            ubah.commit();
+
 
         }
 

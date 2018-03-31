@@ -2,6 +2,7 @@ package com.elektroshock.ades.ades.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.elektroshock.ades.ades.R;
 
@@ -31,6 +33,7 @@ public class DriverActivity extends AppCompatActivity {
     private ImageView mImageView;
     TextView textGambar;
     Button lanjut;
+    protected String gambar_base64;
 
     private static final int PICK_FROM_CAMERA = 1;
     private static final int PICK_FROM_FILE = 2;
@@ -47,6 +50,8 @@ public class DriverActivity extends AppCompatActivity {
         toolbar.setTitle("Data Driver");
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+
+        gambar_base64 = "";
 
         final String [] items           = new String [] {"From Camera", "From SD Card"};
         ArrayAdapter<String> adapter    = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item,items);
@@ -85,8 +90,20 @@ public class DriverActivity extends AppCompatActivity {
         lanjut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(DriverActivity.this, SignatureActivity.class);
-                startActivity(intent);
+               if (gambar_base64.trim().length() > 0){
+
+                   SharedPreferences pref = getSharedPreferences("Selfie",MODE_PRIVATE);
+                   SharedPreferences.Editor ubah = pref.edit();
+                   ubah.putString("selfie",gambar_base64);
+                   ubah.commit();
+
+                   Intent intent=new Intent(DriverActivity.this, SignatureActivity.class);
+                   startActivity(intent);
+
+               } else {
+                 Toast.makeText(getApplicationContext() ,"Pilih gambar dahulu", Toast.LENGTH_LONG).show();
+                 }
+
             }
         });
 
@@ -116,6 +133,7 @@ public class DriverActivity extends AppCompatActivity {
 
         mImageView.setImageBitmap(bitmap);
         textGambar.setVisibility(View.GONE);
+        gambar_base64 = base64(bitmap);
     }
 
     public String getRealPathFromURI(Uri contentUri) {
