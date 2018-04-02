@@ -1,6 +1,5 @@
 package com.elektroshock.ades.ades.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -63,7 +62,7 @@ public class KonsumenActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==R.id.kelola_pelanggan){
-            Intent intent=new Intent(KonsumenActivity.this, DataPelangganActivity.class);
+            Intent intent=new Intent(KonsumenActivity.this, ListKonsumenActivity.class);
             startActivity(intent);
 
         }

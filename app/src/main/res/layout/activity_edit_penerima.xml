@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.EditPenerimaActivity">
+
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="Biodata Penerima"
+                android:textColor="#000000"
+                android:textSize="25sp"/>
+
+            <EditText
+                android:id="@+id/ubah_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:singleLine="true"
+                android:fontFamily="sans-serif"
+                android:textSize="18sp"
+                android:background="@drawable/bg_edittext_menu"
+                android:hint="Nama"/>
+
+            <EditText
+                android:id="@+id/ubah_ktp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:singleLine="true"
+                android:fontFamily="sans-serif"
+                android:textSize="18sp"
+                android:background="@drawable/bg_edittext_menu"
+                android:hint="Nomor KTP"/>
+
+            <EditText
+                android:id="@+id/ubah_kontak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:singleLine="true"
+                android:inputType="number"
+                android:fontFamily="sans-serif"
+                android:textSize="18sp"
+                android:hint="No. Handphone"
+                android:background="@drawable/bg_edittext_menu"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp">
+
+            <Button
+                android:id="@+id/update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Perbaharui Data"
+                android:textColor="#FFFFFF"
+                android:padding="5dp"
+                android:background="@drawable/bg_button"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

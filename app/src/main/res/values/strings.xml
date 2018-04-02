@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ALIVE</string>
     <string name="action_settings">Settings</string>
 
@@ -9,6 +9,8 @@
     <string name="hint_cancel">Batal</string>
     <string name="hint_clear">Bersihkan</string>
     <string name="hint_save">Simpan</string>
-    <string name="title_activity_driver">DriverActivity</string>
+    <string name="penerima_baru">Penerima Baru</string>
 
+    <string name="title_activity_driver">DriverActivity</string>
+    <string name="penerima_edit">Edit Penerima</string>
 </resources>

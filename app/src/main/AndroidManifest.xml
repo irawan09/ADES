@@ -34,14 +34,15 @@
         <activity android:name=".Activity.PenerimaActivity" />
         <activity android:name=".Activity.SignatureActivity" />
         <activity
-            android:name=".Activity.KelolaActivity"
+            android:name=".Activity.DetailDataPenerimaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity android:name=".Activity.LihatDataActivity" />
+        <activity android:name=".Activity.ListPenerimaActivity" />
         <activity
             android:name=".Activity.DriverActivity"
             android:label="@string/title_activity_driver"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.DataPelangganActivity"></activity>
+        <activity android:name=".Activity.ListKonsumenActivity" />
+        <activity android:name=".Activity.EditPenerimaActivity"></activity>
     </application>
 
 </manifest>

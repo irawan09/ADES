@@ -147,11 +147,11 @@ public class SignatureActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==R.id.kelola){
-            Intent intent=new Intent(SignatureActivity.this, KelolaActivity.class);
+            Intent intent=new Intent(SignatureActivity.this, DetailDataPenerimaActivity.class);
             startActivity(intent);
 
         }  else if (item.getItemId() == R.id.ambil) {
-            Intent intent=new Intent(SignatureActivity.this, LihatDataActivity.class);
+            Intent intent=new Intent(SignatureActivity.this, ListPenerimaActivity.class);
             startActivity(intent);
         }
 

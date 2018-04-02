@@ -5,12 +5,12 @@
     <item
         android:id="@+id/kelola"
         android:orderInCategory="100"
-        android:title="Kelola Data"
+        android:title="Detail Data"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/ambil"
         android:orderInCategory="100"
-        android:title="Ambil Data"
+        android:title="Daftar Data"
         app:showAsAction="never" />
 </menu>
