@@ -50,6 +50,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:text="Nama"
+                    android:textSize="13sp"
                     android:textColor="#000000"/>
 
                 <TextView
@@ -58,6 +59,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:text="Nomor KTP"
+                    android:textSize="13sp"
                     android:textColor="#000000"/>
 
                 <TextView
@@ -65,6 +67,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="No. Handphone"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="E-mail"
+                    android:textSize="13sp"
                     android:textColor="#000000"/>
 
                 <TextView
@@ -72,6 +83,47 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Status Kekeluargaan"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Hobi"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Instagram"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Twitter"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Youtube"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Facebook"
+                    android:textSize="13sp"
                     android:textColor="#000000"/>
 
             </LinearLayout>
@@ -86,6 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text=":"
+                    android:textSize="13sp"
                     android:textColor="#000000"/>
 
                 <TextView
@@ -93,6 +146,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text=":"
+                    android:textSize="13sp"
                     android:textColor="#000000"/>
 
                 <TextView
@@ -100,6 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text=":"
+                    android:textSize="13sp"
                     android:textColor="#000000"/>
 
                 <TextView
@@ -107,6 +162,55 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text=":"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text=":"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text=":"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text=":"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text=":"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text=":"
+                    android:textSize="13sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text=":"
+                    android:textSize="13sp"
                     android:textColor="#000000"/>
 
             </LinearLayout>
@@ -120,24 +224,70 @@
                     android:id="@+id/penerima_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="13sp"
                     android:layout_marginTop="8dp"/>
 
                 <TextView
                     android:id="@+id/penerima_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="13sp"
                     android:layout_marginTop="8dp"/>
 
                 <TextView
                     android:id="@+id/penerima_kontak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/penerima_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
                     android:layout_marginTop="8dp"/>
 
                 <TextView
                     android:id="@+id/penerima_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/penerima_hobi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/penerima_instagram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/penerima_twitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/penerima_youtube"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/penerima_facebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
                     android:layout_marginTop="8dp"/>
 
             </LinearLayout>

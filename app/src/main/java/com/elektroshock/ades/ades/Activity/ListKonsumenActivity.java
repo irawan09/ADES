@@ -9,6 +9,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,10 +42,10 @@ public class ListKonsumenActivity extends AppCompatActivity {
 
 
 
-
+/*
         dbcenter = new DatabaseHandler(this);
         SQLiteDatabase db = dbcenter.getWritableDatabase();
-        db.execSQL("INSERT INTO KONSUMEN (NAMA, TTL, KONTAK, ALAMAT, TYPE, WARNA, NO_MESIN) VALUES('" +
+        db.execSQL("INSERT INTO KONSUMEN(NAMA, TTL, KONTAK, ALAMAT, TYPE, WARNA, NO_MESIN) VALUES('" +
                 nama+"','"+
                 ttl+"','" +
                 kontak+"','"+
@@ -53,8 +56,26 @@ public class ListKonsumenActivity extends AppCompatActivity {
 
         ma=this;
         dbcenter = new DatabaseHandler(this);
-        RefreshList();
+        RefreshList();      */
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_pelanggan, menu);
+        //getMenuInflater().inflate(R.menu.menu_pelanggan, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.kelola_pelanggan){
+            Intent intent=new Intent(ListKonsumenActivity.this, KonsumenActivity.class);
+            startActivity(intent);
+
+        }
+        return true;
     }
 
     public void RefreshList(){

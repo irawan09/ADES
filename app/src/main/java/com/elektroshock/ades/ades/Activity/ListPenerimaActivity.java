@@ -10,6 +10,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,7 +29,9 @@ public class ListPenerimaActivity extends AppCompatActivity {
     DatabaseHandler dbcenter;
     public static ListPenerimaActivity ma;
 
-    protected String selfie, ttd, penerima_nama, penerima_ktp, penerima_kontak, penerima_status, penerima_rating, penerima_komentar;
+    protected String selfie, ttd, penerima_nama, penerima_ktp, penerima_kontak, penerima_email,
+            penerima_status, penerima_hobi, penerima_instagram, penerima_twitter, penerima_youtube,
+            penerima_facebook, penerima_rating, penerima_komentar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,25 +55,55 @@ public class ListPenerimaActivity extends AppCompatActivity {
         penerima_nama = preferences.getString("penerima_nama","");
         penerima_ktp = preferences.getString("penerima_ktp","");
         penerima_kontak = preferences.getString("penerima_kontak","");
+        penerima_email = preferences.getString("penerima_email","");
         penerima_status = preferences.getString("penerima_status","");
+        penerima_hobi = preferences.getString("penerima_hobi","");
+        penerima_instagram = preferences.getString("penerima_instagram","");
+        penerima_twitter = preferences.getString("penerima_twitter","");
+        penerima_youtube = preferences.getString("penerima_youtube","");
+        penerima_facebook = preferences.getString("penerima_facebook","");
         penerima_rating = preferences.getString("rating","");
         penerima_komentar = preferences.getString("komentar","");
 
         dbcenter = new DatabaseHandler(this);
         SQLiteDatabase db = dbcenter.getWritableDatabase();
-        db.execSQL("INSERT INTO PENERIMA (NAMA, KTP, KONTAK, STATUS, RATING, KOMENTAR, SELFIE, TTD) VALUES('" +
+        db.execSQL("INSERT INTO PENERIMA (NAMA, KTP, KONTAK, EMAIL, STATUS,  HOBI, INSTAGRAM, " +
+                "TWITTER, YOUTUBE, FACEBOOK, RATING, KOMENTAR, SELFIE, TTD) VALUES('" +
                 penerima_nama+"','"+
                 penerima_ktp+"','" +
                 penerima_kontak+"','"+
+                penerima_email+"','"+
                 penerima_status+"','" +
+                penerima_hobi+"','" +
+                penerima_instagram+"','" +
+                penerima_twitter+"','" +
+                penerima_youtube+"','" +
+                penerima_facebook+"','" +
                 penerima_rating+"','" +
                 penerima_komentar+"','" +
-                selfie+"','" +
-                ttd+ "')");
+                selfie+"','"+ttd+"')");
 
         ma=this;
         dbcenter = new DatabaseHandler(this);
         RefreshList();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_pelanggan, menu);
+        //getMenuInflater().inflate(R.menu.menu_pelanggan, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.kelola_pelanggan){
+            Intent intent=new Intent(ListPenerimaActivity.this, ListKonsumenActivity.class);
+            startActivity(intent);
+
+        }
+        return true;
     }
 
     public void RefreshList(){
