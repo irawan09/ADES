@@ -46,6 +46,7 @@
             android:layout_marginRight="16dp"
             android:padding="8dp"
             android:text="Tidak"
+            android:textSize="10sp"
             android:textColor="#FFFF" />
 
         <Button
@@ -56,6 +57,7 @@
             android:layout_marginLeft="16dp"
             android:padding="8dp"
             android:text="Ya"
+            android:textSize="10sp"
             android:textColor="#FFFF"/>
     </LinearLayout>
 

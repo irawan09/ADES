@@ -1,47 +1,37 @@
 package com.elektroshock.ades.ades.Activity;
 
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.elektroshock.ades.ades.R;
-
-import java.io.ByteArrayOutputStream;
 
 public class DriverActivity extends AppCompatActivity {
 
-    private Uri mImageCaptureUri;
-    private ImageView mImageView;
-    TextView textGambar;
+    TextView namas,ttls, ktps, alamats, kontaks;
+    ImageView foto_driver;
     Button lanjut;
-    protected String gambar_base64;
 
-    private static final int PICK_FROM_CAMERA = 1;
-    private static final int PICK_FROM_FILE = 2;
+    protected String nama, ttl, ktp, alamat, kontak, foto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver);
 
-        textGambar = (TextView) findViewById(R.id.text_gambar);
         lanjut = (Button) findViewById(R.id.lanjut);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // get the reference of Toolbar
@@ -49,108 +39,60 @@ public class DriverActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
-        gambar_base64 = "";
+        SharedPreferences preferences = getSharedPreferences("driver", Context.MODE_PRIVATE);
+        nama = preferences.getString("nama_driver", "" );
+        ttl = preferences.getString("tgl_lahir_driver", "" );
+        ktp = preferences.getString("no_ktp_driver", "" );
+        alamat = preferences.getString("alamat_driver", "" );
+        kontak = preferences.getString("tlp_driver", "" );
+        foto = preferences.getString("foto_driver", "" );
 
-        final String [] items           = new String [] {"From Camera", "From SD Card"};
-        ArrayAdapter<String> adapter    = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item,items);
-        AlertDialog.Builder builder     = new AlertDialog.Builder(this);
-        builder.setTitle("Select Image");
-        builder.setAdapter( adapter, new DialogInterface.OnClickListener() {
-            public void onClick( DialogInterface dialog, int item ) {
-                if (item == 0) {
-                    Intent intent    = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    try {
-                        startActivityForResult(intent, PICK_FROM_CAMERA);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    dialog.cancel();
-                } else {
-                    Intent intent = new Intent();
-                    intent.setType("image/*");
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(Intent.createChooser(intent, "Complete action using"), PICK_FROM_FILE);
-                }
-            }
-        } );
+        namas = (TextView) findViewById(R.id.driver_name);
+        ttls = (TextView) findViewById(R.id.driver_ttl);
+        ktps = (TextView) findViewById(R.id.driver_ktp);
+        alamats = (TextView) findViewById(R.id.driver_alamat);
+        kontaks = (TextView) findViewById(R.id.driver_hape);
+        foto_driver = (ImageView) findViewById(R.id.driver_foto);
 
-        final AlertDialog dialog = builder.create();
-
-        mImageView = (ImageView) findViewById(R.id.iv_pic);
-
-        ((ImageView) findViewById(R.id.iv_pic)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.show();
-            }
-        });
+        namas.setText(nama);
+        ttls.setText(ttl);
+        ktps.setText(ktp);
+        alamats.setText(alamat);
+        kontaks.setText(kontak);
+        Glide.with(this)
+                .load(foto)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .thumbnail(0.5f)
+                .crossFade()
+                .into(foto_driver);
 
         lanjut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (gambar_base64.trim().length() > 0){
-
-                   SharedPreferences pref = getSharedPreferences("Selfie",MODE_PRIVATE);
-                   SharedPreferences.Editor ubah = pref.edit();
-                   ubah.putString("selfie",gambar_base64);
-                   ubah.commit();
-
-                   Intent intent=new Intent(DriverActivity.this, SignatureActivity.class);
-                   startActivity(intent);
-
-               } else {
-                 Toast.makeText(getApplicationContext() ,"Pilih gambar dahulu", Toast.LENGTH_LONG).show();
-                 }
-
+                Intent intent=new Intent(DriverActivity.this, ListKonsumenActivity.class);
+                startActivity(intent);
             }
         });
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != RESULT_OK) return;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_penerima, menu);
+        //getMenuInflater().inflate(R.menu.menu_pelanggan, menu);
+        return true;
+    }
 
-        Bitmap bitmap   = null;
-        String path     = "";
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.detail){
+            Intent intent=new Intent(DriverActivity.this, DetailDataPenerimaActivity.class);
+            startActivity(intent);
 
-        if (requestCode == PICK_FROM_FILE) {
-            mImageCaptureUri = data.getData();
-            path = getRealPathFromURI(mImageCaptureUri); //from Gallery
-
-            if (path == null)
-                path = mImageCaptureUri.getPath(); //from File Manager
-
-            if (path != null)
-                bitmap  = BitmapFactory.decodeFile(path);
-        } else {
-
-            Bundle extras = data.getExtras();
-            bitmap = (Bitmap) extras.get("data");
+        }  else if (item.getItemId() == R.id.list) {
+            Intent intent=new Intent(DriverActivity.this, ListPenerimaActivity.class);
+            startActivity(intent);
         }
 
-        mImageView.setImageBitmap(bitmap);
-        textGambar.setVisibility(View.GONE);
-        gambar_base64 = base64(bitmap);
-    }
-
-    public String getRealPathFromURI(Uri contentUri) {
-        String [] proj      = {MediaStore.Images.Media.DATA};
-        Cursor cursor       = this.getContentResolver().query( contentUri, proj, null, null,null);
-
-        if (cursor == null) return null;
-
-        int column_index    = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
-        cursor.moveToFirst();
-
-        return cursor.getString(column_index);
-    }
-
-    protected String base64(Bitmap gambar){
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        gambar.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-
-        return imageString;
+        return true;
     }
 }

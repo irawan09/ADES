@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Nama"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -39,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Tanggal Lahir"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -46,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="No. HP"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -53,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Alamat"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -60,13 +64,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Type"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Warma"
+                android:text="Warna"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -74,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Nomor Mesin"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
         </LinearLayout>
@@ -90,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text=":"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -97,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text=":"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -104,6 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text=":"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -111,6 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text=":"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -118,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text=":"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -125,6 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text=":"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -132,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text=":"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
         </LinearLayout>
@@ -147,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Ary Kurniadi Irawan"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -155,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="18 Desember 2018"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -163,7 +177,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="081933129900"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -171,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Jl. Maluku 24 Perumahan Gunung Sari Indah"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -179,7 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Supra X 125 DD"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -187,7 +201,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Abu-abu putih"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -195,7 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="MHRGD38506J501103"
+                android:textSize="12sp"
                 android:textColor="#000000"/>
 
         </LinearLayout>
@@ -220,6 +234,7 @@
             android:layout_marginBottom="16dp"
             android:padding="8dp"
             android:text="Lanjut"
+            android:textSize="10sp"
             android:textColor="#FFFF"/>
     </LinearLayout>
 

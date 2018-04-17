@@ -117,8 +117,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Tanda tangan"
+            android:textSize="10sp"
             android:textColor="#FFFFFF"
-            android:padding="5dp"
+            android:padding="8dp"
             android:background="@drawable/bg_button"/>
 
     </LinearLayout>
@@ -172,8 +173,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Kirim"
+            android:textSize="10sp"
             android:textColor="#FFFFFF"
-            android:padding="5dp"
+            android:padding="8dp"
             android:background="@drawable/bg_button"/>
 
     </LinearLayout>

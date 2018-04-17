@@ -148,8 +148,40 @@
                 android:background="@drawable/bg_edittext_menu"/>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="Foto Selfie dengan Deliveryman"
+                android:textColor="#000000"/>
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:id="@+id/iv_pic"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="#c4c3c3"/>
+
+                <TextView
+                    android:id="@+id/text_gambar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center"
+                    android:text="           Ketuk untuk \n menambahkan gambar"
+                    android:textColor="#000000"
+                    android:textSize="12sp"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="275dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp" />
 
@@ -170,7 +202,7 @@
             android:background="@drawable/bg_button"
             android:text="Lanjutkan"
             android:textColor="#FFFF"
-            android:textSize="13sp"/>
+            android:textSize="10sp"/>
     </LinearLayout>
 </LinearLayout>
 

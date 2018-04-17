@@ -45,11 +45,6 @@ public class DetailDataPenerimaActivity extends AppCompatActivity {
         facebook = (TextView) findViewById(R.id.penerima_facebook);
         atasnama = (TextView) findViewById(R.id.atasnama);
 
-        SharedPreferences pref = getSharedPreferences("Selfie",MODE_PRIVATE);
-        selfie=pref.getString("selfie", "");
-
-        Log.e("tag", "String selfie mentah " + selfie);
-
         //take shared preferences from
         SharedPreferences gambar = getSharedPreferences("Signature",MODE_PRIVATE);
         ttd =gambar.getString("ttd", "");

@@ -1,13 +1,13 @@
 package com.elektroshock.ades.ades.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,7 +16,7 @@ import com.elektroshock.ades.ades.R;
 
 public class KonsumenActivity extends AppCompatActivity {
 
-    Button cust,penerima;
+    Button penerima;
     TextView nama, ttl, hape, alamat, type, warna, mesin;
 
     @Override
@@ -37,8 +37,24 @@ public class KonsumenActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // get the reference of Toolbar
         toolbar.setTitle("Data Pelanggan");
         toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
 
+        Bundle bundle = getIntent().getExtras();
+        String id = bundle.getString("id");
+        nama.setText(bundle.getString("nama"));
+        ttl.setText(bundle.getString("ttl"));
+        hape.setText(bundle.getString("hape"));
+        alamat.setText(bundle.getString("alamat"));
+        type.setText(bundle.getString("type"));
+        warna.setText(bundle.getString("warna"));
+        mesin.setText(bundle.getString("mesin"));
+
+        SharedPreferences konsumen = getSharedPreferences("konsumen",MODE_PRIVATE);
+        SharedPreferences.Editor simpan = konsumen.edit();
+        simpan.putString("kontak_pelanggan", bundle.getString("hape"));
+        simpan.putString("id_pembeli", bundle.getString("id"));
+        simpan.commit();
+
+        Log.e("ID PEMBELI", bundle.getString("id"));
 
         penerima.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,24 +66,4 @@ public class KonsumenActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_pelanggan, menu);
-        //getMenuInflater().inflate(R.menu.menu_pelanggan, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==R.id.kelola_pelanggan){
-            Intent intent=new Intent(KonsumenActivity.this, ListKonsumenActivity.class);
-            startActivity(intent);
-
-        }
-        return true;
-    }
-
-
 }

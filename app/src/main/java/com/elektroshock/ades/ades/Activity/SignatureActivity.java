@@ -1,9 +1,11 @@
 package com.elektroshock.ades.ades.Activity;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,15 +13,15 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.telephony.SmsManager;
 import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,15 +32,25 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.elektroshock.ades.ades.Activity.DatabaseHandler.DatabaseHandler;
+import com.elektroshock.ades.ades.Activity.Util.Konsumen;
+import com.elektroshock.ades.ades.Activity.Util.Penerima;
 import com.elektroshock.ades.ades.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class SignatureActivity extends AppCompatActivity {
 
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
+    String message, phoneNo;
+
     Button btn_get_sign, mClear, mGetSign, mCancel, kirim;
+
+    DatabaseHandler dbcenter;
 
     File file;
     Dialog dialog;
@@ -47,11 +59,19 @@ public class SignatureActivity extends AppCompatActivity {
     signature mSignature;
     Bitmap bitmap;
     String comment, nilai;
-    static int number; //static will get memory only once and retain its value
-    // (makes the counter not set again to default value)
-
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
     private RatingBar ratingBar;
     protected EditText komentar;
+
+    Penerima penerima;
+    Konsumen konsumen;
+
+    SharedPreferences nomor;
+    SharedPreferences.Editor edit;
+
+    protected String id_penerima, id_driver, id_pembeli, ttd, penerima_nama, penerima_ktp, penerima_kontak, penerima_email,
+            penerima_status, penerima_hobi, penerima_instagram, penerima_twitter, penerima_youtube,
+            penerima_facebook, penerima_rating, penerima_komentar, selfieString, ttdString;
 
     // Creating Separate Directory for saving Generated Images
     String DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/TandaTangan/";
@@ -66,7 +86,10 @@ public class SignatureActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // get the reference of Toolbar
         toolbar.setTitle("Tanda Tangan Pelanggan");
         toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
+
+        penerima = new Penerima();
+        konsumen = new Konsumen();
+        dbcenter = new DatabaseHandler(this);
 
         // Button to open signature panel
         btn_get_sign = (Button) findViewById(R.id.signature);
@@ -93,7 +116,6 @@ public class SignatureActivity extends AppCompatActivity {
                 dialog_action();
             }
         });
-        Log.e("tag", "ANGKA oncreate:"+number);
 
         addListenerOnRatingBar();
 
@@ -103,22 +125,86 @@ public class SignatureActivity extends AppCompatActivity {
                 comment = komentar.getText().toString();
                 String rating = nilai;
 
-                Log.e("tag", "Rating " + nilai);
-                Log.e("tag", "Komentar " + comment);
-
-                SharedPreferences preferences = getSharedPreferences("Penerima",MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
+                SharedPreferences acceptor = getSharedPreferences("Penerima",MODE_PRIVATE);
+                SharedPreferences.Editor editor = acceptor.edit();
                 editor.putString("rating",rating);
                 editor.putString("komentar",comment);
                 editor.commit();
 
+                SharedPreferences driver = getSharedPreferences("driver",MODE_PRIVATE);
+                id_driver = driver.getString("id_driver","");
+
+
+                id_penerima = String.valueOf(acceptor.getInt("id_penerima", 0));
+                penerima_nama = acceptor.getString("penerima_nama","");
+                penerima_ktp = acceptor.getString("penerima_ktp","");
+                penerima_kontak = acceptor.getString("penerima_kontak","");
+                penerima_email = acceptor.getString("penerima_email","");
+                penerima_status = acceptor.getString("penerima_status","");
+                penerima_hobi = acceptor.getString("penerima_hobi","");
+                penerima_instagram = acceptor.getString("penerima_instagram","");
+                penerima_twitter = acceptor.getString("penerima_twitter","");
+                penerima_youtube = acceptor.getString("penerima_youtube","");
+                penerima_facebook = acceptor.getString("penerima_facebook","");
+                penerima_rating = acceptor.getString("rating","");
+                penerima_komentar = acceptor.getString("komentar","");
+                selfieString = acceptor.getString("selfie","");
+
+                SharedPreferences pembeli = getSharedPreferences("Pembeli",MODE_PRIVATE);
+                id_pembeli = pembeli.getString("id_pembeli","");
+
+                SharedPreferences TandaTangan = getSharedPreferences("Signature",MODE_PRIVATE);
+                ttdString = TandaTangan.getString("ttd","");
+
+                SharedPreferences konsumen = getSharedPreferences("konsumen",MODE_PRIVATE);
+                id_pembeli = konsumen.getString("id_pembeli", "");
+/*
+                signature = penerima.getTTD();
+                selfshot = selfieString.getBytes();
+
+                selfie = Base64.encodeToString(selfshot, 0);
+                ttd = Base64.encodeToString(signature, 0); */
+
+                penerima.setID_PENERIMA(id_penerima);
+                penerima.setID_PEMBELI(id_pembeli);
+                penerima.setID_DRIVER(id_driver);
+                penerima.setNAMA_PENERIMA(penerima_nama);
+                penerima.setKTP_PENERIMA(penerima_ktp);
+                penerima.setTLP_PENERIMA(penerima_kontak);
+                penerima.setEMAIL_PENERIMA(penerima_email);
+                penerima.setSTATUS_KEKELUARGAAN(penerima_status);
+                penerima.setHOBI(penerima_hobi);
+                penerima.setINSTAGRAM(penerima_instagram);
+                penerima.setTWITTER(penerima_twitter);
+                penerima.setYOUTUBE(penerima_youtube);
+                penerima.setFACEBOOK(penerima_facebook);
+                penerima.setRATING(penerima_rating);
+                penerima.setCOMMENT(penerima_komentar);
+                penerima.setSELFIE(selfieString);
+                penerima.setTTD(ttdString);
+
+                Log.e("PEMBELI ID", penerima.getID_PEMBELI()+"");
+                Log.e("PENERIMA ID", penerima.getID_PENERIMA()+"");
+                Log.e("DRIVER ID", penerima.getID_DRIVER()+"");
+                Log.e("NAMA PENERIMA", penerima.getNAMA_PENERIMA()+"");
+                Log.e("HOBI", penerima.getHOBI()+"");
+                Log.e("COMMENT", penerima.getCOMMENT()+"");
+                Log.e("RATING", penerima.getRATING()+"");
+                Log.e("PENERIMA SELFIE", penerima.getSELFIE()+"");
+                Log.e("PENERIMA TTD", penerima.getTTD()+"");
+
+                sendSMSMessage();
+
+                saveToDb(penerima);
+
                 Toast.makeText(getBaseContext(),"Data tersimpan", Toast.LENGTH_SHORT).show();
-
-
-
+                Intent intent=new Intent(SignatureActivity.this, DriverActivity.class);
+                startActivity(intent);
+                finish();
 
             }
         });
+
     }
 
     private void addListenerOnRatingBar() {
@@ -136,28 +222,6 @@ public class SignatureActivity extends AppCompatActivity {
                 Log.e("tag", "Rating mentah " + nilai);
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_penerima, menu);
-        //getMenuInflater().inflate(R.menu.menu_pelanggan, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==R.id.kelola){
-            Intent intent=new Intent(SignatureActivity.this, DetailDataPenerimaActivity.class);
-            startActivity(intent);
-
-        }  else if (item.getItemId() == R.id.ambil) {
-            Intent intent=new Intent(SignatureActivity.this, ListPenerimaActivity.class);
-            startActivity(intent);
-        }
-
-        return true;
     }
 
     // Function for Digital Signature
@@ -184,15 +248,17 @@ public class SignatureActivity extends AppCompatActivity {
         mGetSign.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                number++;
-                pic_name = "TTD" + number;
+
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                String dates = sdf.format(timestamp);
+
+                pic_name = "TTD " + dates;
                 StoredPath = DIRECTORY + pic_name + ".JPEG";
-                Log.e("tag", "ANGKA onclick:"+number);
+                Log.e("tag", "DATES :"+dates);
 
                 Log.e("tag", "Directory" + StoredPath);
                 view.setDrawingCacheEnabled(true);
                 mSignature.save(view, StoredPath);
-
 
                 dialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Berhasil Disimpan", Toast.LENGTH_SHORT).show();
@@ -255,16 +321,15 @@ public class SignatureActivity extends AppCompatActivity {
             ByteArrayOutputStream stream=new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
             byte[] image=stream.toByteArray();
-            String img_str = Base64.encodeToString(image, 0);
+            penerima.setTTD(StoredPath);
+          //  String ttd = Base64.encodeToString(penerima.getTTD(), 0);
 
-            Log.e("tag", "String Gambar mentah " + img_str);
+            SharedPreferences TandaTangan = getSharedPreferences("Signature",MODE_PRIVATE);
+            SharedPreferences.Editor editor = TandaTangan.edit();
+            editor.putString("ttd",penerima.getTTD());
+            editor.commit();
 
-            SharedPreferences pref = getSharedPreferences("Signature",MODE_PRIVATE);
-            SharedPreferences.Editor ubah = pref.edit();
-            ubah.putString("ttd",img_str);
-            ubah.commit();
-
-
+            Log.e("tag", "TTD " + penerima.getTTD()+"");
         }
 
         public void clear() {
@@ -343,5 +408,52 @@ public class SignatureActivity extends AppCompatActivity {
             dirtyRect.top = Math.min(lastTouchY, eventY);
             dirtyRect.bottom = Math.max(lastTouchY, eventY);
         }
+    }
+
+    protected void sendSMSMessage() {
+        SharedPreferences konsumen = getSharedPreferences("konsumen", Context.MODE_PRIVATE);
+        phoneNo = konsumen.getString("kontak_pelanggan", "" );
+
+        Log.e("No. HP :", phoneNo);
+
+        message = "Salam satu hari, kami infokan bapak/ibu baru saja menerima pengiriman unit honda. \n" +
+                "Jika ada pertanyaan atau keluhan silahkan menghubungi 081 917 90 8000 \n" +
+                "Terima Kasih";
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.SEND_SMS)) {
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.SEND_SMS},
+                        MY_PERMISSIONS_REQUEST_SEND_SMS);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(phoneNo, null, message, null, null);
+                    Toast.makeText(getApplicationContext(), "SMS sent.",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(),"SMS gagal, ulangi !", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+        }
+
+    }
+
+    public void saveToDb(Penerima penerima) {
+
+       dbcenter.insertPenerima(penerima);
     }
 }

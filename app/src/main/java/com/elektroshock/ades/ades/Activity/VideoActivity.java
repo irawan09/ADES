@@ -41,8 +41,9 @@ public class VideoActivity extends AppCompatActivity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(VideoActivity.this, DriverActivity.class);
+                Intent intent=new Intent(VideoActivity.this, SignatureActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -68,7 +69,7 @@ public class VideoActivity extends AppCompatActivity {
 
         try {
             // ID of video file.
-            int id = this.getRawResIdByName("tomandjerry");
+            int id = this.getRawResIdByName("honda");
             videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + id));
 
         } catch (Exception e) {

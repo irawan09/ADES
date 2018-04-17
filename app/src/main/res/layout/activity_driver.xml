@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,12 +34,11 @@
 
         <ImageView
             android:id="@+id/driver_foto"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:padding="8dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/foto"/>
+            android:layout_marginBottom="8dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -61,34 +59,41 @@
                     android:layout_marginRight="8dp"
                     android:text="Nama"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:text="Tanggal lahir"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
+                    android:text="No. KTP"
+                    android:textColor="#000000"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text="Alamat"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:text="No. Handphone"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,34 +102,42 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:text=":"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:text=":"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:text=":"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:text=":"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text=":"
+                    android:textColor="#000000"
+                    android:textSize="13sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -136,95 +149,60 @@
                     android:id="@+id/driver_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Suroso"
+                    android:layout_marginTop="5dp"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:id="@+id/driver_ttl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="19 Agustus 1988"
+                    android:layout_marginTop="5dp"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/driver_ktp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#000000"
+                    android:textSize="13sp"/>
+
 
                 <TextView
                     android:id="@+id/driver_alamat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Jl. Merdeka Raya no.86 BTN Pepabri"
+                    android:layout_marginTop="5dp"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:id="@+id/driver_hape"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="085743217858"
+                    android:layout_marginTop="5dp"
                     android:textColor="#000000"
-                    android:textSize="11sp"/>
+                    android:textSize="13sp"/>
             </LinearLayout>
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:gravity="center">
 
-            <TextView
+            <Button
+                android:id="@+id/lanjut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:text="Foto Selfie"
-                android:textColor="#000000"/>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
-
-                <ImageView
-                    android:id="@+id/iv_pic"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:background="#c4c3c3"/>
-
-                <TextView
-                    android:id="@+id/text_gambar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|center"
-                    android:text="Ketuk untuk menambahkan gambar"
-                    android:textColor="#000000"
-                    android:textSize="11sp"/>
-
-            </FrameLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <Button
-                    android:id="@+id/lanjut"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_button"
-                    android:layout_marginLeft="16dp"
-                    android:padding="8dp"
-                    android:text="Selanjutnya"
-                    android:textSize="12sp"
-                    android:textColor="#FFFF"/>
-            </LinearLayout>
+                android:background="@drawable/bg_button"
+                android:layout_marginLeft="16dp"
+                android:padding="8dp"
+                android:text="Selanjutnya"
+                android:textSize="12sp"
+                android:textColor="#FFFF"/>
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

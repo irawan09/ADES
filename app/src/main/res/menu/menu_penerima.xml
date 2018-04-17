@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.elektroshock.ades.ades.Activity.MainActivity">
     <item
-        android:id="@+id/kelola"
+        android:id="@+id/detail"
         android:orderInCategory="100"
-        android:title="Detail Data"
+        android:title="Detail Data Penerima Terakhir"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/ambil"
+        android:id="@+id/list"
         android:orderInCategory="100"
         android:title="Daftar Data"
         app:showAsAction="never" />

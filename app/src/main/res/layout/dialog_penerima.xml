@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/hapus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hapus Semua Data"
+        android:padding="24dp"
+        android:textSize="18sp"
+        android:textColor="#4e4c4c"/>
+
+    <TextView
+        android:id="@+id/kirim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kirim Semua Data"
+        android:padding="24dp"
+        android:textSize="18sp"
+        android:textColor="#4e4c4c"/>
+
+</LinearLayout>
