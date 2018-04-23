@@ -91,7 +91,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mengetahui ketentuan garansi, service dan lokasi SVC"
+                    android:text="Mengetahui ketentuan garansi, KPB Service dan bengkel resmi terdekat"
                     android:textColor="#000000"/>
 
             </LinearLayout>
@@ -134,7 +134,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Penilaian Aplikasi"
+            android:text="Penilaian Deliveryman"
             android:textColor="#000000"
             android:layout_marginBottom="8dp"/>
 
@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:gravity="bottom"
             android:layout_marginTop="16dp"
-            android:text="Komentar Penilaian Aplikasi"
+            android:text="Komentar Penilaian Deliveryman"
             android:textColor="#000000"/>
 
         <EditText

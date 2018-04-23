@@ -1,6 +1,7 @@
 package com.elektroshock.ades.ades.Activity.Util;
 
 public class Penerima {
+    String ID;
     String ID_PENERIMA;
     String ID_PEMBELI;
     String ID_DRIVER;
@@ -19,7 +20,8 @@ public class Penerima {
     String SELFIE;
     String TTD;
 
-    public Penerima(String ID_PENERIMA, String ID_PEMBELI, String ID_DRIVER, String KTP_PENERIMA, String NAMA_PENERIMA, String TLP_PENERIMA, String EMAIL_PENERIMA, String STATUS_KEKELUARGAAN, String HOBI, String INSTAGRAM, String TWITTER, String YOUTUBE, String FACEBOOK, String RATING, String COMMENT, String SELFIE, String TTD) {
+    public Penerima(String ID, String ID_PENERIMA, String ID_PEMBELI, String ID_DRIVER, String KTP_PENERIMA, String NAMA_PENERIMA, String TLP_PENERIMA, String EMAIL_PENERIMA, String STATUS_KEKELUARGAAN, String HOBI, String INSTAGRAM, String TWITTER, String YOUTUBE, String FACEBOOK, String RATING, String COMMENT, String SELFIE, String TTD) {
+        this.ID = ID;
         this.ID_PENERIMA = ID_PENERIMA;
         this.ID_PEMBELI = ID_PEMBELI;
         this.ID_DRIVER = ID_DRIVER;
@@ -41,6 +43,14 @@ public class Penerima {
 
     public Penerima(){
 
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public String getID_PENERIMA() {

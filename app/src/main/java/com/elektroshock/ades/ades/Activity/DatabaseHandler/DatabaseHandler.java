@@ -135,6 +135,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do {
                 Penerima accept = new Penerima();
+                accept.setID(cursor.getString(0));
                 accept.setID_PENERIMA(cursor.getString(1));
                 accept.setID_PEMBELI(cursor.getString(2));
                 accept.setID_DRIVER(cursor.getString(3));
@@ -168,7 +169,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void deleteAllPenerima(){
         db = this.getWritableDatabase();
+
         db.execSQL("DELETE FROM "+TB_PENERIMA);
+    }
+
+    public void deletePenerima(String id){
+        db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM "+TB_PENERIMA+"WHERE ID_PEMBELI = "+id);
     }
 
     public void updatePenerima(Penerima penerima, String id){

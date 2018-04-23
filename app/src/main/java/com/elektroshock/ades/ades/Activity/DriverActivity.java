@@ -79,20 +79,14 @@ public class DriverActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_penerima, menu);
-        //getMenuInflater().inflate(R.menu.menu_pelanggan, menu);
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==R.id.detail){
-            Intent intent=new Intent(DriverActivity.this, DetailDataPenerimaActivity.class);
-            startActivity(intent);
-
-        }  else if (item.getItemId() == R.id.list) {
+        if (item.getItemId() == R.id.list) {
             Intent intent=new Intent(DriverActivity.this, ListPenerimaActivity.class);
             startActivity(intent);
         }
-
         return true;
     }
 }

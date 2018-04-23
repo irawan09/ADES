@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.telephony.SmsManager;
 import android.util.AttributeSet;
-import android.util.Base64;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -65,9 +64,6 @@ public class SignatureActivity extends AppCompatActivity {
 
     Penerima penerima;
     Konsumen konsumen;
-
-    SharedPreferences nomor;
-    SharedPreferences.Editor edit;
 
     protected String id_penerima, id_driver, id_pembeli, ttd, penerima_nama, penerima_ktp, penerima_kontak, penerima_email,
             penerima_status, penerima_hobi, penerima_instagram, penerima_twitter, penerima_youtube,
@@ -158,12 +154,6 @@ public class SignatureActivity extends AppCompatActivity {
 
                 SharedPreferences konsumen = getSharedPreferences("konsumen",MODE_PRIVATE);
                 id_pembeli = konsumen.getString("id_pembeli", "");
-/*
-                signature = penerima.getTTD();
-                selfshot = selfieString.getBytes();
-
-                selfie = Base64.encodeToString(selfshot, 0);
-                ttd = Base64.encodeToString(signature, 0); */
 
                 penerima.setID_PENERIMA(id_penerima);
                 penerima.setID_PEMBELI(id_pembeli);

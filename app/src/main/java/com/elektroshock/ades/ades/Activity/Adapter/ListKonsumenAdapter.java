@@ -2,7 +2,6 @@ package com.elektroshock.ades.ades.Activity.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -17,8 +16,6 @@ import com.elektroshock.ades.ades.Activity.Util.Konsumen;
 import com.elektroshock.ades.ades.R;
 
 import java.util.ArrayList;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class ListKonsumenAdapter extends RecyclerView.Adapter<ListKonsumenAdapter.MyViewHolder> {
 

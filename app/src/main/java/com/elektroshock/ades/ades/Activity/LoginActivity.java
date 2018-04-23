@@ -58,7 +58,6 @@ public class LoginActivity extends Activity {
         pass = (EditText) findViewById(R.id.password);
         masuk = (Button) findViewById(R.id.submit1);
 
-
         penerima = new Penerima();
 
         preferences = getSharedPreferences("driver", Context.MODE_PRIVATE);
@@ -84,7 +83,6 @@ public class LoginActivity extends Activity {
                 }
             }
         });
-
     }
 
     private void login(final String hp, final String pass) {
@@ -147,7 +145,6 @@ public class LoginActivity extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -176,8 +173,6 @@ public class LoginActivity extends Activity {
                 return params;
             }
         };
-
         queue.add(request);
-
     }
 }

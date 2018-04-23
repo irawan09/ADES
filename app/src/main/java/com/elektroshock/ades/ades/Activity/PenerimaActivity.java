@@ -29,10 +29,7 @@ import android.widget.Toast;
 import com.elektroshock.ades.ades.Activity.Util.Penerima;
 import com.elektroshock.ades.ades.R;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,7 +42,6 @@ import java.util.List;
 public class PenerimaActivity extends AppCompatActivity {
 
     Button next;
-    private String selectedImagePath;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
     private ImageView mImageView;
     private TextView textGambar;
@@ -408,14 +404,5 @@ public class PenerimaActivity extends AppCompatActivity {
         cursor.moveToFirst();
 
         return cursor.getString(column_index);
-    }
-
-    protected byte[] ImgtoString(Bitmap gambar){
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        gambar.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-
-        return imageBytes;
     }
 }
