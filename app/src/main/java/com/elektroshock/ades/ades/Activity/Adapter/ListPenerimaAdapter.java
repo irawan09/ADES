@@ -86,7 +86,7 @@ public class ListPenerimaAdapter extends RecyclerView.Adapter<ListPenerimaAdapte
                 selfie = person.getSELFIE();
                 ttd = person.getTTD();
 
-                Log.e("FOTO SELFIE ", selfie);
+                Log.e("ID ", id);
                 Log.e("TTD ", ttd);
 
                 selfieString = ListPenerimaActivity.ConvertURLtoBitmap(selfie);
@@ -143,8 +143,11 @@ public class ListPenerimaAdapter extends RecyclerView.Adapter<ListPenerimaAdapte
 
                     String status =driver.getString("status");
                     if (status.equals("success")) {
-                        Toast.makeText(context, "Data terkirim", Toast.LENGTH_SHORT).show();
+                        dbcenter = new DatabaseHandler(context);
                         dbcenter.deletePenerima(id);
+
+                        Toast.makeText(context, "Data terkirim", Toast.LENGTH_SHORT).show();
+
                     }
                     else {
                         Toast.makeText(context, "Data gagal terkirim", Toast.LENGTH_SHORT).show();

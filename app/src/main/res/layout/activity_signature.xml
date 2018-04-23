@@ -13,171 +13,181 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Pernyataan Konsumen"
-            android:textSize="20sp"
-            android:textColor="#000000"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Menyatakan bahwa bapak/ibu :"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="1."
-                    android:textColor="#000000"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="2."
-                    android:textColor="#000000"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="3."
-                    android:textColor="#000000"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Sudah menerima unit dengan lengkap dan baik"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Pernyataan Konsumen"
+                    android:textSize="20sp"
                     android:textColor="#000000"/>
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Mengetahui fitur dan fungsi pengoperasian kendaraan yang di terima"
+                    android:layout_height="match_parent"
+                    android:text="Menyatakan bahwa bapak/ibu :"
+                    android:textSize="16sp"
                     android:textColor="#000000"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="1."
+                            android:textColor="#000000"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:text="2."
+                            android:textColor="#000000"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:text="3."
+                            android:textColor="#000000"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Sudah menerima unit dengan lengkap dan baik"
+                            android:textColor="#000000"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Mengetahui fitur dan fungsi pengoperasian kendaraan yang di terima"
+                            android:textColor="#000000"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mengetahui ketentuan garansi, KPB Service dan bengkel resmi terdekat"
+                            android:textColor="#000000"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mengetahui ketentuan garansi, KPB Service dan bengkel resmi terdekat"
+                    android:gravity="bottom"
+                    android:text="Tanda Tangan Penerima"
                     android:textColor="#000000"/>
+
+                <Button
+                    android:id="@+id/signature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Tanda tangan"
+                    android:textSize="10sp"
+                    android:textColor="#FFFFFF"
+                    android:padding="8dp"
+                    android:background="@drawable/bg_button"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Penilaian Deliveryman"
+                    android:textColor="#000000"
+                    android:layout_marginBottom="8dp"/>
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="1"
+                    android:theme="@style/RatingBar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:layout_marginTop="16dp"
+                    android:text="Komentar Penilaian Deliveryman"
+                    android:textColor="#000000"/>
+
+                <EditText
+                    android:id="@+id/komentar"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:singleLine="true"
+                    android:fontFamily="sans-serif"
+                    android:textSize="18sp"
+                    android:hint=""
+                    android:background="@drawable/bg_edittext_menu"/>
+
+                <Button
+                    android:id="@+id/kirim_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Kirim"
+                    android:textSize="10sp"
+                    android:textColor="#FFFFFF"
+                    android:padding="8dp"
+                    android:background="@drawable/bg_button"/>
 
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:text="Tanda Tangan Penerima"
-            android:textColor="#000000"/>
-
-        <Button
-            android:id="@+id/signature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Tanda tangan"
-            android:textSize="10sp"
-            android:textColor="#FFFFFF"
-            android:padding="8dp"
-            android:background="@drawable/bg_button"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Penilaian Deliveryman"
-            android:textColor="#000000"
-            android:layout_marginBottom="8dp"/>
-
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="1"
-            android:theme="@style/RatingBar" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:layout_marginTop="16dp"
-            android:text="Komentar Penilaian Deliveryman"
-            android:textColor="#000000"/>
-
-        <EditText
-            android:id="@+id/komentar"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginLeft="32dp"
-            android:singleLine="true"
-            android:fontFamily="sans-serif"
-            android:textSize="18sp"
-            android:hint=""
-            android:background="@drawable/bg_edittext_menu"/>
-
-        <Button
-            android:id="@+id/kirim_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Kirim"
-            android:textSize="10sp"
-            android:textColor="#FFFFFF"
-            android:padding="8dp"
-            android:background="@drawable/bg_button"/>
-
-    </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

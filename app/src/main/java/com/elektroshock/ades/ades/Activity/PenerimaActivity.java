@@ -385,7 +385,11 @@ public class PenerimaActivity extends AppCompatActivity {
             bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             mImageView.setImageBitmap(bitmap);
             textGambar.setVisibility(View.GONE);
+        } else {
+            mImageView.setImageBitmap(bitmap);
+            textGambar.setVisibility(View.GONE);
         }
+
         penerima.setSELFIE(StoredPath);
         url_gambar = penerima.getSELFIE();
 

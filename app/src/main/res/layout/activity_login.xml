@@ -48,6 +48,7 @@
             android:drawablePadding="8dp"
             android:hint="Nomor Handphone"
             android:singleLine="true"
+            android:inputType="number"
             android:textColorHint="#FFFF"
             android:background="@drawable/bg_edit_text"
             android:fontFamily="sans-serif"

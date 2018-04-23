@@ -43,7 +43,7 @@ public class ListKonsumenActivity extends AppCompatActivity {
 
     String id_driver;
 
-    String url = "http://api.hondauntukntb.com/api/pembeli?id_driver=";
+    String url = "http://api.hondauntukntb.com/api/pembeli?status_pembeli=0&id_driver=";
 
     ArrayList<Konsumen> data_pembeli = new ArrayList<>();
     HashMap<String, String> map;

@@ -2,10 +2,12 @@ package com.elektroshock.ades.ades.Activity.DatabaseHandler;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.View;
 
 import com.elektroshock.ades.ades.Activity.Util.Konsumen;
 import com.elektroshock.ades.ades.Activity.Util.Penerima;
@@ -42,6 +44,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         Log.e(TAG, "start db helper");
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -175,7 +178,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void deletePenerima(String id){
         db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM "+TB_PENERIMA+"WHERE ID_PEMBELI = "+id);
+        db.execSQL("DELETE FROM "+TB_PENERIMA+" WHERE ID_PEMBELI = "+id);
     }
 
     public void updatePenerima(Penerima penerima, String id){
