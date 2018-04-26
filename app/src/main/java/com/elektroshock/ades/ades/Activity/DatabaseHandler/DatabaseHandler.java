@@ -78,6 +78,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Log.e(TAG, "INSERT KONSUMEN" );
     }
 
+    public boolean updateKonsumen(String id, String uri) {
+        db = this.getReadableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("PETA", uri);
+
+        db.update(TB_KONSUMEN, values, "ID_KONSUMEN=?", new String[] { id });
+
+        return true;
+    }
+
     public void insertPenerima(Penerima penerima){
         db = this.getReadableDatabase();
 
@@ -102,6 +113,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         db.insert(TB_PENERIMA, null,values);
         Log.e(TAG, "insertPenerima" );
+    }
+
+    public Konsumen getKonsumenById(String id) {
+        Konsumen cust = new Konsumen();
+
+        db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TB_KONSUMEN + " WHERE ID_KONSUMEN = ? ";
+        Cursor cursor = db.rawQuery(query, new String[] { id });
+        if (cursor.moveToFirst()) {
+            cust.setPembeli_id(cursor.getString(1));
+            cust.setPembeli_nama(cursor.getString(2));
+            cust.setPembeli_ttl(cursor.getString(3));
+            cust.setPembeli_kontak(cursor.getString(4));
+            cust.setPembeli_alamat(cursor.getString(5));
+            cust.setPembeli_type(cursor.getString(6));
+            cust.setPembeli_warna(cursor.getString(7));
+            cust.setPembeli_mesin(cursor.getString(8));
+            cust.setPembeli_map(cursor.getString(9));
+        }
+
+        return cust;
     }
 
     public ArrayList<Konsumen> getKonsumen(){

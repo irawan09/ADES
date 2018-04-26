@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.net.Uri;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -188,11 +189,7 @@ public class SignatureActivity extends AppCompatActivity {
                 saveToDb(penerima);
 
                 Toast.makeText(getBaseContext(),"Data tersimpan", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(SignatureActivity.this, DriverActivity.class);
-                startActivity(intent);
-                finish();
-
-            }
+          }
         });
 
     }
@@ -410,37 +407,12 @@ public class SignatureActivity extends AppCompatActivity {
                 "Jika ada pertanyaan atau keluhan silahkan menghubungi 081 917 90 8000 \n" +
                 "Terima Kasih";
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.SEND_SMS)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.SEND_SMS)) {
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.SEND_SMS},
-                        MY_PERMISSIONS_REQUEST_SEND_SMS);
-            }
-        }
+        Uri uri = Uri.parse("smsto:"+phoneNo);
+        Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+        it.putExtra("sms_body", message);
+        startActivity(it);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNo, null, message, null, null);
-                    Toast.makeText(getApplicationContext(), "SMS sent.",
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(),"SMS gagal, ulangi !", Toast.LENGTH_LONG).show();
-                    return;
-                }
-            }
-        }
-
-    }
 
     public void saveToDb(Penerima penerima) {
 

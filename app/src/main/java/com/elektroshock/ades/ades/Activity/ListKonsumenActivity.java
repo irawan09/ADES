@@ -3,6 +3,8 @@ package com.elektroshock.ades.ades.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -76,8 +78,15 @@ public class ListKonsumenActivity extends AppCompatActivity {
         SharedPreferences driver = getSharedPreferences("driver",MODE_PRIVATE);
         id_driver = driver.getString("id_driver", "");
 
-        Load();
-        showData();
+        ConnectivityManager cm = (ConnectivityManager) getApplication().getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            Load();
+        }
+        else {
+            showData();
+        }
 
     }
 
@@ -117,7 +126,7 @@ public class ListKonsumenActivity extends AppCompatActivity {
                     }
 
                     saveToDb(data_pembeli);
-                    //showData();
+                    showData();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -144,26 +153,12 @@ public class ListKonsumenActivity extends AppCompatActivity {
 
     public void saveToDb(final ArrayList<Konsumen> pembeli) {
 
-        //dbcenter.deleteAllKonsumen();
+        dbcenter.deleteAllKonsumen();
 
 
         for (int i = 0; i < pembeli.size(); i++) {
-            final int finalI = i;
-            Glide.with(this)
-                    .asBitmap()
-                    .load(pembeli.get(i).getPembeli_map())
-                    .into(new SimpleTarget<Bitmap>() {
-                        @Override
-                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                            //pembeli.get(finalI).setPembeli_map(saveImage(resource));
-                            //imageView.setImageBitmap(resource);
-                            saveImage(resource, pembeli.get(finalI));
-                        }
-                    });
-            //dbcenter.insertKonsumen(pembeli.get(i));
+            dbcenter.insertKonsumen(pembeli.get(i));
         }
-
-        showData();
     }
 
     public void showData(){
@@ -187,9 +182,8 @@ public class ListKonsumenActivity extends AppCompatActivity {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String dates = sdf.format(timestamp);
 
-
         String imageFileName = dates + " STATIC_MAP" + ".jpg";
-        File storageDir = new File(            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
                 + "/STATICMAP");
         boolean success = true;
         if (!storageDir.exists()) {
@@ -205,15 +199,7 @@ public class ListKonsumenActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            // Add the image to the system gallery
-            //   galleryAddPic(savedImagePath);
-            //Toast.makeText(getApplicationContext(), "IMAGE SAVED", Toast.LENGTH_LONG).show();
-            //   textView.setText(savedImagePath);
-            //   showImage(savedImagePath);
         }
         pembeli.setPembeli_map(savedImagePath);
-        dbcenter.insertKonsumen(pembeli);
-        //return savedImagePath;
     }
 }

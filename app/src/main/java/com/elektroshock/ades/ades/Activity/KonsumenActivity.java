@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.elektroshock.ades.ades.Activity.DatabaseHandler.DatabaseHandler;
+import com.elektroshock.ades.ades.Activity.Util.Konsumen;
 import com.elektroshock.ades.ades.R;
 
 import java.io.File;
@@ -28,13 +30,17 @@ public class KonsumenActivity extends AppCompatActivity {
 
 
     Button penerima;
-    TextView nama, ttl, hape, alamat, type, warna, mesin;
+    TextView nama, ttl, hape, alamat, type, warna, mesin, urimap;
     ImageView peta;
+
+    DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_konsumen);
+
+        db = new DatabaseHandler(this);
 
         nama = (TextView) findViewById(R.id.nama);
         ttl = (TextView) findViewById(R.id.ttl);
@@ -43,7 +49,8 @@ public class KonsumenActivity extends AppCompatActivity {
         type = (TextView) findViewById(R.id.type);
         warna = (TextView) findViewById(R.id.warna);
         mesin = (TextView) findViewById(R.id.mesin);
-        peta = (ImageView) findViewById(R.id.map);
+        //urimap = (TextView) findViewById(R.id.urimap);
+        peta = (ImageView) findViewById(R.id.mapimage);
 
         penerima = (Button) findViewById(R.id.penerima_kendaraan);
 
@@ -53,13 +60,19 @@ public class KonsumenActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String id = bundle.getString("id");
-        nama.setText(bundle.getString("nama"));
-        ttl.setText(bundle.getString("ttl"));
-        hape.setText(bundle.getString("hape"));
-        alamat.setText(bundle.getString("alamat"));
-        type.setText(bundle.getString("type"));
-        warna.setText(bundle.getString("warna"));
-        mesin.setText(bundle.getString("mesin"));
+
+        Konsumen kon = db.getKonsumenById(id);
+
+        nama.setText(kon.getPembeli_nama());
+        //nama.setText(bundle.getString("nama"));
+        ttl.setText(kon.getPembeli_ttl());
+        hape.setText(kon.getPembeli_kontak());
+        alamat.setText(kon.getPembeli_alamat());
+        type.setText(kon.getPembeli_type());
+        warna.setText(kon.getPembeli_warna());
+        mesin.setText(kon.getPembeli_mesin());
+        //urimap.setText(bundle.getString("peta"));
+
         showImage(bundle.getString("peta"));
 
         SharedPreferences konsumen = getSharedPreferences("konsumen",MODE_PRIVATE);
