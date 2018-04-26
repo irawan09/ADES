@@ -1,6 +1,8 @@
 package com.elektroshock.ades.ades.Activity.Adapter;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -30,6 +32,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class ListPenerimaAdapter extends RecyclerView.Adapter<ListPenerimaAdapter.MyViewHolder> {
 
@@ -97,10 +101,17 @@ public class ListPenerimaAdapter extends RecyclerView.Adapter<ListPenerimaAdapte
                 Log.e("ID DRIVER ", id_driver);
                 Log.e("STATUS KEKELUARGAAN ", status_kekeluargaan);
 
-                kirim(id, id_pembeli, id_driver, no_ktp_penerima, nama_penerima, tlp_penerima,
-                        email_penerima, status_kekeluargaan, hobi_penerima, instagram, twitter,
-                        youtube, facebook, rating_penerima, comment_penerima, selfieString, TTDString);
+                ConnectivityManager cm = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = cm.getActiveNetworkInfo();
 
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    kirim(id, id_pembeli, id_driver, no_ktp_penerima, nama_penerima, tlp_penerima,
+                            email_penerima, status_kekeluargaan, hobi_penerima, instagram, twitter,
+                            youtube, facebook, rating_penerima, comment_penerima, selfieString, TTDString);
+                }
+                else {
+                    Toast.makeText(context, "PERIKSA KONEKSI INTERNET ANDA !!!", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -133,7 +144,6 @@ public class ListPenerimaAdapter extends RecyclerView.Adapter<ListPenerimaAdapte
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-            //    progressSpinner.hide();
                 Log.e("Message", response);
 
                 try{
@@ -143,12 +153,10 @@ public class ListPenerimaAdapter extends RecyclerView.Adapter<ListPenerimaAdapte
                     if (status.equals("success")) {
                         dbcenter = new DatabaseHandler(context);
                         dbcenter.deletePenerima(id);
-
-                        Toast.makeText(context, "Data terkirim", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(context, "Data terkirim", Toast.LENGTH_LONG).show();
                     }
                     else {
-                        Toast.makeText(context, "Data gagal terkirim", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Data gagal terkirim", Toast.LENGTH_LONG).show();
                     }
 
                 }catch (JSONException e){

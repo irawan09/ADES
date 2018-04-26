@@ -53,8 +53,6 @@ public class ListKonsumenAdapter extends RecyclerView.Adapter<ListKonsumenAdapte
     @Override
     public void onBindViewHolder(@NonNull final ListKonsumenAdapter.MyViewHolder holder, final int position) {
         final Konsumen konsumen = konsumenList.get(position);
-
-
         Glide.with(context)
                 .asBitmap()
                 .load(konsumen.getPembeli_map())
