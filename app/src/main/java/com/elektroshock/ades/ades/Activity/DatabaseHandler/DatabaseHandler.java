@@ -32,7 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     String konsumen =
             "CREATE TABLE IF NOT EXISTS "+TB_KONSUMEN+" (ID integer primary key autoincrement, ID_KONSUMEN integer, NAMA text, TTL text, " +
                 "KONTAK text, ALAMAT text, TYPE text, WARNA text, " +
-                "NO_MESIN text);";
+                "NO_MESIN text, PETA text);";
 
     String penerima =
             "CREATE TABLE IF NOT EXISTS "+TB_PENERIMA+" (ID integer primary key autoincrement, ID_PENERIMA text, ID_PEMBELI text, ID_DRIVER text, " +
@@ -72,6 +72,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("TYPE", konsumen.getPembeli_type());
         values.put("WARNA", konsumen.getPembeli_warna());
         values.put("NO_MESIN", konsumen.getPembeli_mesin());
+        values.put("PETA", konsumen.getPembeli_map());
 
         db.insert(TB_KONSUMEN, null,values);
         Log.e(TAG, "INSERT KONSUMEN" );
@@ -120,6 +121,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 cust.setPembeli_type(cursor.getString(6));
                 cust.setPembeli_warna(cursor.getString(7));
                 cust.setPembeli_mesin(cursor.getString(8));
+                cust.setPembeli_map(cursor.getString(9));
 
                 konsumen.add(cust);
             }

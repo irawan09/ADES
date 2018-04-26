@@ -2,21 +2,34 @@ package com.elektroshock.ades.ades.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.elektroshock.ades.ades.R;
 
+import java.io.File;
+
 public class KonsumenActivity extends AppCompatActivity {
+
+    String DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/Peta/";
+    String pic_name;
+    String StoredPath = DIRECTORY + pic_name + ".JPEG";
+
 
     Button penerima;
     TextView nama, ttl, hape, alamat, type, warna, mesin;
+    ImageView peta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +43,7 @@ public class KonsumenActivity extends AppCompatActivity {
         type = (TextView) findViewById(R.id.type);
         warna = (TextView) findViewById(R.id.warna);
         mesin = (TextView) findViewById(R.id.mesin);
+        peta = (ImageView) findViewById(R.id.map);
 
         penerima = (Button) findViewById(R.id.penerima_kendaraan);
 
@@ -46,6 +60,7 @@ public class KonsumenActivity extends AppCompatActivity {
         type.setText(bundle.getString("type"));
         warna.setText(bundle.getString("warna"));
         mesin.setText(bundle.getString("mesin"));
+        showImage(bundle.getString("peta"));
 
         SharedPreferences konsumen = getSharedPreferences("konsumen",MODE_PRIVATE);
         SharedPreferences.Editor simpan = konsumen.edit();
@@ -64,5 +79,17 @@ public class KonsumenActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void showImage(String uri) {
+        File imgFile = new  File(uri);
+
+        if(imgFile.exists()){
+
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+            peta.setImageBitmap(myBitmap);
+
+        }
     }
 }

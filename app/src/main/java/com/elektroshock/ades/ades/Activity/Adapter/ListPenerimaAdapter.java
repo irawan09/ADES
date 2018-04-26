@@ -118,10 +118,8 @@ public class ListPenerimaAdapter extends RecyclerView.Adapter<ListPenerimaAdapte
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
             linearLayout = (LinearLayout) itemView.findViewById(R.id.rl_penerima);
             tv = (TextView) itemView.findViewById(R.id.text_penerima);
-
         }
     }
 

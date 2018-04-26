@@ -1,7 +1,11 @@
 package com.elektroshock.ades.ades.Activity;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -19,6 +24,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.elektroshock.ades.ades.Activity.Adapter.ListKonsumenAdapter;
 import com.elektroshock.ades.ades.Activity.DatabaseHandler.DatabaseHandler;
 import com.elektroshock.ades.ades.Activity.Util.Konsumen;
@@ -28,6 +36,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +57,7 @@ public class ListKonsumenActivity extends AppCompatActivity {
     String id_driver;
 
     String url = "http://api.hondauntukntb.com/api/pembeli?status_pembeli=0&id_driver=";
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
     ArrayList<Konsumen> data_pembeli = new ArrayList<>();
     HashMap<String, String> map;
@@ -92,6 +106,8 @@ public class ListKonsumenActivity extends AppCompatActivity {
                         pembeli.setPembeli_type(cust.getString("type_kendaraan"));
                         pembeli.setPembeli_warna(cust.getString("warna_kendaraan"));
                         pembeli.setPembeli_mesin(cust.getString("no_mesin_kendaraan"));
+                        pembeli.setPembeli_map(cust.getString("lokasi_pembeli"));
+
 
                         Log.e("Nama", pembeli.getPembeli_nama());
                         Log.e("Pembeli ID", pembeli.getPembeli_id());
@@ -101,11 +117,12 @@ public class ListKonsumenActivity extends AppCompatActivity {
                     }
 
                     saveToDb(data_pembeli);
-                    showData();
+                    //showData();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                //showData();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -125,13 +142,28 @@ public class ListKonsumenActivity extends AppCompatActivity {
         queue.add(request);
     }
 
-    public void saveToDb(ArrayList<Konsumen> pembeli) {
+    public void saveToDb(final ArrayList<Konsumen> pembeli) {
 
-        dbcenter.deleteAllKonsumen();
+        //dbcenter.deleteAllKonsumen();
+
 
         for (int i = 0; i < pembeli.size(); i++) {
-            dbcenter.insertKonsumen(pembeli.get(i));
+            final int finalI = i;
+            Glide.with(this)
+                    .asBitmap()
+                    .load(pembeli.get(i).getPembeli_map())
+                    .into(new SimpleTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            //pembeli.get(finalI).setPembeli_map(saveImage(resource));
+                            //imageView.setImageBitmap(resource);
+                            saveImage(resource, pembeli.get(finalI));
+                        }
+                    });
+            //dbcenter.insertKonsumen(pembeli.get(i));
         }
+
+        showData();
     }
 
     public void showData(){
@@ -147,5 +179,41 @@ public class ListKonsumenActivity extends AppCompatActivity {
 
         konsumenList.setItemAnimator(new DefaultItemAnimator());
         konsumenList.setAdapter(konsumenAdapter);
+    }
+
+    private void saveImage(Bitmap image, Konsumen pembeli) {
+        String savedImagePath = null;
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String dates = sdf.format(timestamp);
+
+
+        String imageFileName = dates + " STATIC_MAP" + ".jpg";
+        File storageDir = new File(            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                + "/STATICMAP");
+        boolean success = true;
+        if (!storageDir.exists()) {
+            success = storageDir.mkdirs();
+        }
+        if (success) {
+            File imageFile = new File(storageDir, imageFileName);
+            savedImagePath = imageFile.getAbsolutePath();
+            try {
+                OutputStream fOut = new FileOutputStream(imageFile);
+                image.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+                fOut.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // Add the image to the system gallery
+            //   galleryAddPic(savedImagePath);
+            //Toast.makeText(getApplicationContext(), "IMAGE SAVED", Toast.LENGTH_LONG).show();
+            //   textView.setText(savedImagePath);
+            //   showImage(savedImagePath);
+        }
+        pembeli.setPembeli_map(savedImagePath);
+        dbcenter.insertKonsumen(pembeli);
+        //return savedImagePath;
     }
 }

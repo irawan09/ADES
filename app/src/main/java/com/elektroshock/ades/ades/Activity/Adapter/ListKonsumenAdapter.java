@@ -53,6 +53,7 @@ public class ListKonsumenAdapter extends RecyclerView.Adapter<ListKonsumenAdapte
                 bundle.putString("type", konsumen.getPembeli_type());
                 bundle.putString("warna", konsumen.getPembeli_warna());
                 bundle.putString("mesin", konsumen.getPembeli_mesin());
+                bundle.putString("peta", konsumen.getPembeli_map());
 
                 Intent i = new Intent(context, KonsumenActivity.class);
                 i.putExtras(bundle);

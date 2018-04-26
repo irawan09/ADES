@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.elektroshock.ades.ades.Activity.DatabaseHandler.DatabaseHandler;
 import com.elektroshock.ades.ades.R;
 
 public class DriverActivity extends AppCompatActivity {
@@ -24,6 +26,7 @@ public class DriverActivity extends AppCompatActivity {
     TextView namas,ttls, ktps, alamats, kontaks;
     ImageView foto_driver;
     Button lanjut;
+    DatabaseHandler dbcenter;
 
     protected String nama, ttl, ktp, alamat, kontak, foto;
 
@@ -38,6 +41,9 @@ public class DriverActivity extends AppCompatActivity {
         toolbar.setTitle("Data Driver");
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+
+        //dbcenter = new DatabaseHandler(this);
+        //dbcenter.deleteAllKonsumen();
 
         SharedPreferences preferences = getSharedPreferences("driver", Context.MODE_PRIVATE);
         nama = preferences.getString("nama_driver", "" );
@@ -54,6 +60,8 @@ public class DriverActivity extends AppCompatActivity {
         kontaks = (TextView) findViewById(R.id.driver_hape);
         foto_driver = (ImageView) findViewById(R.id.driver_foto);
 
+        Log.e("FOTO", foto);
+
         namas.setText(nama);
         ttls.setText(ttl);
         ktps.setText(ktp);
@@ -61,9 +69,7 @@ public class DriverActivity extends AppCompatActivity {
         kontaks.setText(kontak);
         Glide.with(this)
                 .load(foto)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .thumbnail(0.5f)
-                .crossFade()
                 .into(foto_driver);
 
         lanjut.setOnClickListener(new View.OnClickListener() {

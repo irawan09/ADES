@@ -9,8 +9,9 @@ public class Konsumen {
     String pembeli_type;
     String pembeli_warna;
     String pembeli_mesin;
+    String pembeli_map;
 
-    public Konsumen(String pembeli_id, String pembeli_nama, String pembeli_ttl, String pembeli_kontak, String pembeli_alamat, String pembeli_type, String pembeli_warna, String pembeli_mesin) {
+    public Konsumen(String pembeli_id, String pembeli_nama, String pembeli_ttl, String pembeli_kontak, String pembeli_alamat, String pembeli_type, String pembeli_warna, String pembeli_mesin, String pembeli_map) {
         this.pembeli_id = pembeli_id;
         this.pembeli_nama = pembeli_nama;
         this.pembeli_ttl = pembeli_ttl;
@@ -19,6 +20,8 @@ public class Konsumen {
         this.pembeli_type = pembeli_type;
         this.pembeli_warna = pembeli_warna;
         this.pembeli_mesin = pembeli_mesin;
+        this.pembeli_map = pembeli_map;
+
     }
 
     public Konsumen() {
@@ -87,5 +90,13 @@ public class Konsumen {
 
     public void setPembeli_mesin(String pembeli_mesin) {
         this.pembeli_mesin = pembeli_mesin;
+    }
+
+    public String getPembeli_map() {
+        return pembeli_map;
+    }
+
+    public void setPembeli_map(String pembeli_map) {
+        this.pembeli_map = pembeli_map;
     }
 }
