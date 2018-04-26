@@ -309,7 +309,6 @@ public class SignatureActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
             byte[] image=stream.toByteArray();
             penerima.setTTD(StoredPath);
-          //  String ttd = Base64.encodeToString(penerima.getTTD(), 0);
 
             SharedPreferences TandaTangan = getSharedPreferences("Signature",MODE_PRIVATE);
             SharedPreferences.Editor editor = TandaTangan.edit();

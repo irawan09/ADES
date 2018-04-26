@@ -91,8 +91,6 @@ public class ListKonsumenAdapter extends RecyclerView.Adapter<ListKonsumenAdapte
                 context.startActivity(i);
             }
         });
-
-
     }
 
     @Override
@@ -124,15 +122,7 @@ public class ListKonsumenAdapter extends RecyclerView.Adapter<ListKonsumenAdapte
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            // Add the image to the system gallery
-            //   galleryAddPic(savedImagePath);
-            //Toast.makeText(getApplicationContext(), "IMAGE SAVED", Toast.LENGTH_LONG).show();
-            //   textView.setText(savedImagePath);
-            //   showImage(savedImagePath);
         }
-        //pembeli.setPembeli_map(savedImagePath);
-        // dbcenter.insertKonsumen(pembeli);
         return savedImagePath;
     }
 
@@ -147,7 +137,6 @@ public class ListKonsumenAdapter extends RecyclerView.Adapter<ListKonsumenAdapte
             rl = (LinearLayout) itemView.findViewById(R.id.rl_konsumen);
             tv = (TextView) itemView.findViewById(R.id.text_konsumen);
             tvuri = (TextView) itemView.findViewById(R.id.no_hp_konsumen);
-
         }
     }
 }
